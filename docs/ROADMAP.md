@@ -8,3 +8,4 @@ Bu liste tamamlanmış özellik iddiası değil, araştırmanın sonraki önceli
 4. **Dürüst raporlama:** Veri yeterliliği, belirsizlik ve örnek/gerçek sonuç ayrımının daha anlaşılır gösterilmesi.
 5. **Koç deneyimi:** İnceleme süresini kısaltan klip seçimi, sade raporlar ve toplantı akışı.
 6. **Bakım:** Otomatik testler, küçük modüller ve tekrarlanabilir model değerlendirmeleri.
+7. **İngilizce arayüz:** Gezinme, dinamik mesajlar, pencereler ve raporlar için ortak çeviri sistemi. Mevcut arayüz Türkçedir.

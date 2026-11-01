@@ -1,66 +1,78 @@
 # SahaLens
 
-**Yerel çalışan futbol video analiz ve taktik toplantı stüdyosu.**
+**A local football video analysis and tactical meeting studio.**
 
-SahaLens, amatör ve yarı profesyonel takımların maç görüntülerinden olay önerileri, klipler ve anlaşılır raporlar üretmesini amaçlayan bir araştırma projesidir. Ana akış: **video → AI önerileri → inceleme → klipler → takım toplantısı**.
+**English** | [Türkçe](README.tr.md)
 
-Bu depo ürün tanıtımı içindir. Uygulama kaynak kodu, model dosyaları, maç videoları ve kullanıcı verileri burada yayımlanmaz. Kaynak kod özel bir GitHub deposunda geliştirilir. Bu depo bir kurulum paketi veya açık kaynak yazılım dağıtımı değildir.
+SahaLens is a non-commercial research project helping amateur and semi-professional football teams turn match footage into event suggestions, clips and understandable reports. Its core workflow is **video → AI suggestions → review → clips → team meeting**.
 
-## Arayüzden görüntüler
+This is the public product showcase. Application source code is maintained in a private repository. This repository does not distribute the application, model weights, match footage or user data.
 
-Görüntüler çalışan uygulamadan, kurmaca takımlar içeren yerleşik **örnek maç** kullanılarak alınmıştır. Bir maç videosunun gerçek analiz sonucu değildir; maç yayını veya gerçek oyuncu görüntüsü içermez.
+## Screenshots
 
-### Maç stüdyosu
-![SahaLens maç stüdyosu — örnek veri](assets/studio.png)
+These screenshots were captured from the running application using its built-in **fictional demo match**. They illustrate the interface, not measured results from a real match or evidence of model accuracy. No broadcast footage or real player imagery is included.
 
-### Olay günlüğü
-![Zaman damgalı olay günlüğü — örnek veri](assets/events.png)
+**Interface language:** The application currently uses Turkish. An English interface and a language selector are not implemented. This English README documents the product; screenshots show the current Turkish interface.
 
-### AI önerilerinin incelenmesi
-![AI önerileri ve inceleme kuyruğu — örnek veri](assets/review.png)
+### Match studio
+![Match studio with fictional demo data](assets/studio.png)
 
-### Rapor ve istatistik
-![Maç raporu ve istatistikler — örnek veri](assets/stats.png)
+### Event log
+![Timestamped event log with fictional demo data](assets/events.png)
 
-## Neler geliştirildi?
+### AI suggestion review
+![AI suggestion review queue with fictional demo data](assets/review.png)
 
-| Alan | Uygulamadaki karşılığı |
+### Reports and statistics
+![Match report with fictional demo data](assets/stats.png)
+
+## What has been built?
+
+| Area | Capabilities |
 | --- | --- |
-| Maç çalışma alanı | Maçlar, kadrolar, zaman damgalı olaylar, yerel kayıt ve yedekler |
-| Yayın analizi | Zamansal olay modeli, skor ve maç saati OCR, inceleme kuyruğu |
-| Görüntü işleme | Oyuncu/top tespiti, takip ve saha kalibrasyonu araştırmaları |
-| Taktik inceleme | 2D saha, pas ağı, saha üstü çizimler, duran top planları |
-| Raporlama | Şut konumuna dayalı xG, maç hikâyesi, oyuncu ve rakip raporları |
-| Toplantı | Olaylardan klip listesi, sunum görünümü, video ve yazdırılabilir rapor çıktıları |
-| Kalite | Veri kaynağı açıklamaları, deneysel sonuç işaretleri ve metrik kalite kapıları |
+| Match workspace | Matches, squads, timestamped events, local persistence and backups |
+| Broadcast analysis | Temporal event spotting, scoreboard and match-clock OCR, suggestion review queue |
+| Computer vision | Player and ball detection, tracking and pitch calibration research |
+| Tactical analysis | 2D pitch, passing networks, video annotations and set-piece planning |
+| Reporting | Shot-location-based expected goals (xG), match narratives, player and opponent reports |
+| Team meetings | Event-based clip playlists, presentation view, video exports and printable reports |
+| Quality controls | Data provenance, experimental-result labels and metric quality gates |
 
-Bu tablo geliştirilmiş modülleri anlatır; her AI çıktısının her yayın türünde doğrulanmış olduğu anlamına gelmez.
+These are implemented modules, not a claim that every AI output has been validated across every broadcast format.
 
-## Teknolojiler
+## Technology stack
 
-| Katman | Teknolojiler ve amaç |
+| Layer | Technologies and purpose |
 | --- | --- |
-| Arayüz | JavaScript, HTML, CSS, Canvas; taktik saha, grafikler ve video çizimleri |
-| Yerel sunucu | Node.js HTTP, dosya tabanlı çalışma alanı ve analiz iş kuyruğu |
-| AI ve görüntü | Python, PyTorch, Ultralytics YOLO, OpenCV, NumPy, SciPy |
-| Yayın olay modeli | ResNet özellikleri, zamansal konvolüsyon/Transformer ve model topluluğu |
-| Sesli notlar | faster-whisper ile yerel konuşma çözümleme |
-| Kalite güvencesi | ESLint, Node test runner, Python unittest, Playwright, axe-core, GitHub Actions |
+| Frontend | JavaScript, HTML, CSS and Canvas for the tactical pitch, charts and annotations |
+| Local backend | Node.js HTTP server, file-based workspace storage and analysis job queue |
+| AI and vision | Python, PyTorch, Ultralytics YOLO, OpenCV, NumPy and SciPy |
+| Event spotting | ResNet features, temporal convolutions, Transformer and model ensemble |
+| Voice notes | Local speech transcription with faster-whisper |
+| Quality assurance | ESLint, Node test runner, Python unittest, Playwright, axe-core and GitHub Actions |
 
-## Araştırma durumu
+## How it works
 
-Proje ticari bir ürün veya hatasız otomatik istatistik sağlayıcısı olarak sunulmaz. Yayın olayları, takım ataması ve oyuncu kimliğinin korunması üzerinde araştırma sürmektedir. Koordinat gerektiren istatistikler saha kalibrasyonu ve takip kalitesine bağlıdır.
+1. Open a local match video in the browser-based studio.
+2. Run the local Python analysis pipeline to generate event suggestions.
+3. Review suggestions with timestamps and available evidence.
+4. Organize reviewed events into clips and tactical reports.
+5. Present selected moments in a team meeting.
 
-Önceki deney kayıtlarında SoccerNet testinde yaklaşık **0,498 loose mAP** raporlanmıştır. Bu, yüzde 49,8 genel doğruluk değildir ve yeni yayınlarda aynı başarıyı garanti etmez. Aynı kayıtlardaki gerçek yayın denemeleri, özellikle eşik kalibrasyonu ve takım atamasında önemli eksikler göstermiştir. Bu tanıtım hazırlanırken eğitim veya benchmark yeniden çalıştırılmamıştır.
+## Research status
 
-## Veriler ve mahremiyet
+Event detection, team assignment and consistent player identities remain active research areas. Coordinate-dependent statistics require reliable tracking and pitch calibration.
 
-Temel video işleme yereldir. İsteğe bağlı dış servis özelliklerinin veri akışları ayrıca değerlendirilmelidir; tüm uygulama için koşulsuz çevrimdışı çalışma iddiasında bulunmuyoruz. Araştırmada kullanılan SoccerNet, StatsBomb ve diğer üçüncü taraf kaynakları kendi erişim/lisans koşullarına tabidir; verileri veya ağırlıkları bu depoda dağıtılmaz.
+Earlier experiment records report approximately **0.498 loose mAP on the SoccerNet test set**. This is not 49.8% overall accuracy and does not establish equivalent performance on new broadcasts. Recorded real-broadcast evaluations revealed substantial calibration and team-assignment limitations. Training and benchmarks were not rerun when preparing this showcase.
 
-## Daha fazla bilgi
+## Data and privacy
 
-- [Mimari ve tasarım](docs/ARCHITECTURE.md)
-- [Geliştirme alanları](docs/ROADMAP.md)
-- [Görsellerin kaynağı ve kullanım koşulları](NOTICE.md)
+Core video processing runs locally. Optional external-service features require separate consideration of their data flows; this is not a blanket claim that every feature works offline. SoccerNet, StatsBomb and other third-party research resources remain subject to their respective access and licensing terms. Their datasets and model weights are not redistributed here.
 
-Hazırlanma: 1 Kasım 2026. Ekran görüntüleri ve yetenek açıklamaları bu tarihte incelenen kaynak koduna dayanır.
+## Further information
+
+- [Architecture](docs/ARCHITECTURE.en.md)
+- [Research roadmap](docs/ROADMAP.en.md)
+- [Showcase materials notice](NOTICE.en.md)
+
+Prepared on 1 November 2026 from the source code and research records inspected at that time.
